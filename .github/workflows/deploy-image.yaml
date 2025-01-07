@@ -24,7 +24,7 @@ jobs:
         run: bash install.sh
 
       - name: Build Docker image
-        run: /home/runner/.encore/bin/encore build docker myapp:ghcr.io/${{ github.repository }}:latest
+        run: /home/runner/.encore/bin/encore build docker ghcr.io/${{ github.repository }}:latest
 
       - name: Log in to the Container registry
         uses: docker/login-action@v3.3.0

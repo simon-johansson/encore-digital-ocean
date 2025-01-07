@@ -1,21 +1,23 @@
 name: Build, Push and Deploy a Docker Image
 
 on:
- push:
-   branches: [main]
+  push:
+    branches: [ main ]
 
 permissions:
   contents: read
   packages: write
 
 jobs:
- build-push-deploy-image:
-   runs-on: ubuntu-latest
-   steps:
-     - name: curl
-       uses: sozo-design/curl@v1.0.2
-       with:
-         args: -L https://encore.dev/install.sh | bash
+  build-push-deploy-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: curl
+        uses: sozo-design/curl@v1.0.2
+        with:
+          args: -L https://encore.dev/install.sh
+      - name: Run bash script
+        run: bash install.sh
 #     - name: Checkout repository
 #       uses: actions/checkout@v4
 #     - name: Log in to the Container registry

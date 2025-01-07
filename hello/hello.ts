@@ -24,6 +24,13 @@ interface Response {
   message: string;
 }
 
+export const foo = api(
+  { expose: true, method: "GET", path: "/foo" },
+  async (): Promise<Response> => {
+    return { message: "bar" };
+  }
+);
+
 // ==================================================================
 
 // Encore comes with a built-in development dashboard for

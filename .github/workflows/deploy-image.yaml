@@ -31,7 +31,7 @@ jobs:
 #          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Log in to the Container registry
-        run: docker login registry.digitalocean.com -u simon@encore.dev -p ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+        run: docker login registry.digitalocean.com -u ekerfelt -p ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
       - name: Build Docker image
         run: /home/runner/.encore/bin/encore build docker myapp

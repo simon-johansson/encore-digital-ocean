@@ -39,10 +39,11 @@ jobs:
 #      - name: Push Docker image
 #        run: docker push ghcr.io/${{ github.repository }}:latest
 
-      - name: Test bash-wrapper
-        shell: bash-wrapper {0}
-        run: |
-          bash trigger-railway-deploy.sh
+      - name: Trigger deploy
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node script.js
 
 #      - name: Trigger Railway deployment
 #        run: ./trigger-railway-deploy.sh

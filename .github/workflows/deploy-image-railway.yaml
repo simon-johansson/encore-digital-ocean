@@ -39,6 +39,7 @@ jobs:
 #      - name: Push Docker image
 #        run: docker push ghcr.io/${{ github.repository }}:latest
 
+
       - name: Trigger Railway deployment
         run: ./trigger-railway-deploy.sh
 

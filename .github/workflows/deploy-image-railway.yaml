@@ -40,7 +40,7 @@ jobs:
 #        run: docker push ghcr.io/${{ github.repository }}:latest
 
       - name: Trigger Railway deployment
-        run: ./trigger-railway-deployment.sh
+        run: ./trigger-railway-deploy.sh
 
 #      - name: curl
 #        uses: enflo/curl-action@master

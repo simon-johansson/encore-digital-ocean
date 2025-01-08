@@ -1,4 +1,4 @@
-name: Build, Push and Deploy a Docker Image
+name: Build, Push and Deploy a Encore Docker Image to DigitalOcean
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Download Encore CLI
+      - name: Download Encore CLI script
         uses: sozo-design/curl@v1.0.2
         with:
           args: --output install.sh -L https://encore.dev/install.sh
@@ -23,7 +23,7 @@ jobs:
       - name: Install Encore CLI
         run: bash install.sh
 
-      - name: Log in to the Container registry
+      - name: Log in to DigitalOcean container registry
         run: docker login registry.digitalocean.com -u simon@encore.dev -p ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
       - name: Build Docker image

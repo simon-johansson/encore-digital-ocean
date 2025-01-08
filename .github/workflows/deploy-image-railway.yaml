@@ -39,20 +39,30 @@ jobs:
       - name: Push Docker image
         run: docker push ghcr.io/${{ github.repository }}:latest
 
-      - name: Trigger Railway deployment
-        uses: octokit/graphql-action@v2.x
+      - name: Download Encore CLI script
+        uses: sozo-design/curl@v1.0.2
         with:
-          query: |
-            mutation ServiceInstanceRedeploy {
-               serviceInstanceRedeploy(
-                   environmentId: "acd168f1-37c4-4a1e-86e4-206d07568f2c"
-                   serviceId: "945e37da-1034-446e-9610-2af87582d634"
-               )
-            }
-        headers:
-          Authorization: ${{ secrets.RAILWAY_API_TOKEN }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          args: | 
+            --request POST \
+            --url https://backboard.railway.com/graphql/v2 \
+            --header "Authorization: Bearer ${{ secrets.RAILWAY_API_TOKEN }}"\
+            --header "Content-Type: application/json"\
+            --data '{"query":"query { me { name email } }"}'
+
+#      - name: Trigger Railway deployment
+#        uses: octokit/graphql-action@v2.x
+#        with:
+#          query: |
+#            mutation ServiceInstanceRedeploy {
+#               serviceInstanceRedeploy(
+#                   environmentId: "acd168f1-37c4-4a1e-86e4-206d07568f2c"
+#                   serviceId: "945e37da-1034-446e-9610-2af87582d634"
+#               )
+#            }
+#        headers:
+#          Authorization: ${{ secrets.RAILWAY_API_TOKEN }}
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 # build-push-deploy-image2:
 #   runs-on: ubuntu-latest

@@ -49,6 +49,10 @@ jobs:
                    serviceId: "945e37da-1034-446e-9610-2af87582d634"
                )
             }
+        headers:
+          Authorization: ${{ secrets.RAILWAY_API_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 # build-push-deploy-image2:
 #   runs-on: ubuntu-latest

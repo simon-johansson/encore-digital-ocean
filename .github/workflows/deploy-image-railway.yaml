@@ -39,6 +39,9 @@ jobs:
 #      - name: Push Docker image
 #        run: docker push ghcr.io/${{ github.repository }}:latest
 
+      - name: Trigger Railway deployment
+        run: bash trigger-railway-deployment.sh
+
       - name: curl
         uses: enflo/curl-action@master
         with:

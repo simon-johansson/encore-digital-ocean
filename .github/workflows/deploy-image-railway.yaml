@@ -45,9 +45,9 @@ jobs:
           curl: >
             --request POST 
             --url https://backboard.railway.com/graphql/v2
-            --header "Authorization: Bearer 3e392dba-86be-465d-82b1-cffc9a0bf04d"
+            --header "Authorization: Bearer ${{ secrets.RAILWAY_API_TOKEN }}"
             --header "Content-Type: application/json"
-            --data '{"query":"query { me { name email } }"}'
+            --data "{\"query\":\"query { me { name email } }\"}"
 
 #      - name: Download Encore CLI script
 #        uses: sozo-design/curl@v1.0.2

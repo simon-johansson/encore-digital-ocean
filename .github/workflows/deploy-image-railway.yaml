@@ -39,10 +39,17 @@ jobs:
 #      - name: Push Docker image
 #        run: docker push ghcr.io/${{ github.repository }}:latest
 
+      - name: curl
+        uses: enflo/curl-action@master
+        with:
+          curl: | 
+            --request POST --url https://backboard.railway.com/graphql/v2 --header 'Authorization: Bearer ${{ secrets.RAILWAY_API_TOKEN }}' --header 'Content-Type: application/json' --data '{"query":"query { me { name email } }"}'
+
       - name: Download Encore CLI script
         uses: sozo-design/curl@v1.0.2
         with:
-          args: --request POST --url https://backboard.railway.com/graphql/v2 --header 'Authorization: Bearer ${{ secrets.RAILWAY_API_TOKEN }}' --header 'Content-Type: application/json' --data '{"query":"query { me { name email } }"}'
+          args: | 
+            --request POST --url https://backboard.railway.com/graphql/v2 --header 'Authorization: Bearer ${{ secrets.RAILWAY_API_TOKEN }}' --header 'Content-Type: application/json' --data '{"query":"query { me { name email } }"}'
 
 
 #      - name: Trigger Railway deployment

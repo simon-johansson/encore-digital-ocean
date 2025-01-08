@@ -31,6 +31,13 @@ export const foo = api(
   }
 );
 
+export const benny = api(
+  { expose: true, method: "GET", path: "/benny" },
+  async (): Promise<Response> => {
+    return { message: "sparr" };
+  }
+);
+
 // ==================================================================
 
 // Encore comes with a built-in development dashboard for

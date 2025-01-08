@@ -1,4 +1,4 @@
-name: Build, Push and Deploy a Docker Image
+name: Build, Push and Deploy a Docker Image to Railway
 
 on:
  push:
@@ -38,18 +38,3 @@ jobs:
 
      - name: Push Docker image
        run: docker push ghcr.io/${{ github.repository }}:latest
-
-#     - name: Build and push Docker image
-#       id: push
-#       uses: docker/build-push-action@v6.5.0
-#       with:
-#         context: .
-#         push: true
-#         tags: ghcr.io/${{ github.repository }}:latest
-
-#     - name: Deploy the app
-#       uses: digitalocean/app_action/deploy@v2
-#       env:
-#         SAMPLE_DIGEST: ${{ steps.push.outputs.digest }}
-#       with:
-#         token: ${{ secrets.YOUR_DIGITALOCEAN_ACCESS_TOKEN_VARIABLE_NAME }}

@@ -3,6 +3,9 @@
    "sql_servers": [
    {
       "host": "postgres.railway.internal:5432",
+      "tls_config": {
+         "disable_tls_hostname_verification": true
+      },
       "databases": {
          "railway": {
             "username": "postgres",

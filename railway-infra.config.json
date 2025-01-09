@@ -4,7 +4,7 @@
    {
       "host": "monorail.proxy.rlwy.net:39684",
       "databases": {
-         "mydb": {
+         "railway": {
             "username": "postgres",
             "password": "TxQzFHCXHgredSZZWnogjnirUhqZSHPB"
           }

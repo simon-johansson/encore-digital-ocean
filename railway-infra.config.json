@@ -1,0 +1,13 @@
+{
+   "$schema": "https://encore.dev/schemas/infra.schema.json",
+   "sql_servers": [
+   {
+      "host": "monorail.proxy.rlwy.net:39684",
+      "databases": {
+         "mydb": {
+            "username": "postgres",
+            "password": "TxQzFHCXHgredSZZWnogjnirUhqZSHPB"
+          }
+      }
+   }]
+}

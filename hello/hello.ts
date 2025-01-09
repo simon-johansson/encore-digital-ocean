@@ -1,4 +1,5 @@
-import { api } from "encore.dev/api";
+import {api} from "encore.dev/api";
+import { SQLDatabase } from "encore.dev/storage/sqldb";
 
 // Welcome to Encore!
 // This is a simple "Hello World" project to get you started.
@@ -13,10 +14,10 @@ import { api } from "encore.dev/api";
 //	curl http://localhost:4000/hello/World
 //
 export const get = api(
-  { expose: true, method: "GET", path: "/hello/:name" },
-  async ({ name }: { name: string }): Promise<Response> => {
+  {expose: true, method: "GET", path: "/hello/:name"},
+  async ({name}: { name: string }): Promise<Response> => {
     const msg = `Hello ${name}!`;
-    return { message: msg };
+    return {message: msg};
   }
 );
 
@@ -24,53 +25,15 @@ interface Response {
   message: string;
 }
 
-export const foo = api(
-  { expose: true, method: "GET", path: "/foo" },
-  async (): Promise<Response> => {
-    return { message: "bar" };
+const mydb = new SQLDatabase("railway", {
+  migrations: "./migrations",
+});
+
+export const getUser = api(
+  {expose: true, method: "GET", path: "/names/:id"},
+  async ({id}: { id: number }): Promise<{ id: number; name: string }> => {
+    return await mydb.queryRow`SELECT *
+                               FROM users
+                               WHERE id = ${id}` as { id: number; name: string };
   }
 );
-
-export const benny = api(
-  { expose: true, method: "GET", path: "/benny" },
-  async (): Promise<Response> => {
-    return { message: "sparr" };
-  }
-);
-
-export const bar = api(
-  { expose: true, method: "GET", path: "/bar" },
-  async (): Promise<Response> => {
-    return { message: "foo" };
-  }
-);
-
-// ==================================================================
-
-// Encore comes with a built-in development dashboard for
-// exploring your API, viewing documentation, debugging with
-// distributed tracing, and more. Visit your API URL in the browser:
-//
-//     http://localhost:9400
-//
-
-// ==================================================================
-
-// Next steps
-//
-// 1. Deploy your application to the cloud
-//
-//     git add -A .
-//     git commit -m 'Commit message'
-//     git push encore
-//
-// 2. To continue exploring Encore, check out these topics in docs:
-//
-//    Building a REST API:   https://encore.dev/docs/ts/tutorials/rest-api
-//    Creating Services:      https://encore.dev/docs/ts/primitives/services
-//    Creating APIs:         https://encore.dev/docs/ts/primitives/defining-apis
-//    Using SQL Databases:        https://encore.dev/docs/ts/primitives/databases
-//    Using Pub/Sub:         https://encore.dev/docs/ts/primitives/pubsub
-//    Authenticating users:  https://encore.dev/docs/ts/develop/auth
-//    Using Cron Jobs: https://encore.dev/docs/ts/primitives/cron-jobs
-//    Using Secrets: https://encore.dev/docs/ts/primitives/secrets

@@ -2,7 +2,7 @@
    "$schema": "https://encore.dev/schemas/infra.schema.json",
    "sql_servers": [
    {
-      "host": "monorail.proxy.rlwy.net:39684",
+      "host": "postgres.railway.internal:5432",
       "databases": {
          "railway": {
             "username": "postgres",

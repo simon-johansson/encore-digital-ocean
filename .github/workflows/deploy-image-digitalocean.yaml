@@ -24,7 +24,7 @@ jobs:
         run: bash install.sh
 
       - name: Build Docker image
-        run: /home/runner/.encore/bin/encore build docker --config digitalocean-infra.config.json myapp
+        run: /home/runner/.encore/bin/encore build docker --config runtime.config.json myapp
 
       - name: Log in to DigitalOcean container registry
         run: docker login registry.digitalocean.com -u simon@encore.dev -p ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}

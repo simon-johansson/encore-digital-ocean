@@ -10,7 +10,7 @@
          "db": {
             "name": "railway",
             "username": "postgres",
-            "password": {"$env": "POSTGRES_PASSWORD"}
+            "password": {"$env": "PGPASSWORD"}
           }
       }
    }]

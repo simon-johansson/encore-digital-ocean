@@ -1,0 +1,17 @@
+{
+   "$schema": "https://encore.dev/schemas/infra.schema.json",
+   "sql_servers": [
+   {
+      "host": "db-postgresql-nyc3-18909-do-user-18107314-0.h.db.ondigitalocean.com:25060",
+      "tls_config": {
+         "ca": {"$env": "CA_CERT"},
+      },
+      "databases": {
+         "db": {
+            "name": "defaultdb",
+            "username": "postgres",
+            "password": {"$env": "DB_PASSWORD"}
+          }
+      }
+   }]
+}

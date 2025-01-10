@@ -4,7 +4,7 @@
    {
       "host": "db-postgresql-nyc3-18909-do-user-18107314-0.h.db.ondigitalocean.com:25060",
       "tls_config": {
-         "ca": {"$env": "CA_CERT"},
+         "ca": {"$env": "CA_CERT"}
       },
       "databases": {
          "db": {

@@ -1,0 +1,17 @@
+{
+   "$schema": "https://encore.dev/schemas/infra.schema.json",
+   "sql_servers": [
+   {
+      "host": "monorail.proxy.rlwy.net:39684",
+      "tls_config": {
+         disable_ca_validation: true
+      },
+      "databases": {
+         "db": {
+            "name": "railway",
+            "username": "postgres",
+            "password": {"$env": "POSTGRES_PASSWORD"}
+          }
+      }
+   }]
+}

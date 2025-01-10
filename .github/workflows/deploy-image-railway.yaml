@@ -15,36 +15,36 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-#      - name: Log in to the Container registry
-#        uses: docker/login-action@v3.3.0
-#        with:
-#          registry: ghcr.io
-#          username: ${{ github.actor }}
-#          password: ${{ secrets.GITHUB_TOKEN }}
-#
-#      - name: Download Encore CLI script
-#        uses: sozo-design/curl@v1.0.2
-#        with:
-#          args: --output install.sh -L https://encore.dev/install.sh
-#
-#      - name: Install Encore CLI
-#        run: bash install.sh
-#
-#      - name: Build Docker image
-#        run: /home/runner/.encore/bin/encore build --config railway-infra.config.json docker myapp
-#
-#      - name: Tag Docker image
-#        run: docker tag myapp ghcr.io/${{ github.repository }}:latest
-#
-#      - name: Push Docker image
-#        run: docker push ghcr.io/${{ github.repository }}:latest
-#
-#      - name: Set up Node
-#        uses: actions/setup-node@v4
-#        with:
-#          node-version: 22
-#
-#      - name: Trigger Railway deployment
-#        # Deployments on Railway will not happen automatically when deploying Docker images
-#        # so we need to call the Railway API to trigger a new deployment
-#        run: node script.js ${{ secrets.RAILWAY_API_TOKEN }}
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3.3.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Download Encore CLI script
+        uses: sozo-design/curl@v1.0.2
+        with:
+          args: --output install.sh -L https://encore.dev/install.sh
+
+      - name: Install Encore CLI
+        run: bash install.sh
+
+      - name: Build Docker image
+        run: /home/runner/.encore/bin/encore build --config railway.config.json docker myapp
+
+      - name: Tag Docker image
+        run: docker tag myapp ghcr.io/${{ github.repository }}:latest
+
+      - name: Push Docker image
+        run: docker push ghcr.io/${{ github.repository }}:latest
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Trigger Railway deployment
+        # Deployments on Railway will not happen automatically when deploying Docker images
+        # so we need to call the Railway API to trigger a new deployment
+        run: node script.js ${{ secrets.RAILWAY_API_TOKEN }}

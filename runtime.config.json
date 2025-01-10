@@ -9,7 +9,7 @@
       "databases": {
          "db": {
             "name": "defaultdb",
-            "username": "postgres",
+            "username": "doadmin",
             "password": {"$env": "DB_PASSWORD"}
           }
       }
